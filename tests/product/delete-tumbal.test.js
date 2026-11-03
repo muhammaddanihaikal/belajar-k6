@@ -1,10 +1,9 @@
 import { check, sleep } from "k6";
 import { SharedArray } from "k6/data";
-import { productOptions } from "../../config/options.js";
+import { productOptions } from "../../config/options/product.options.js";
 import { authSetup } from "../../helpers/setup.helper.js";
 import { deleteProduct } from "../../services/product.service.js";
 
-// 100% DRY
 export const options = productOptions;
 
 const tumbalList = new SharedArray("daftar tumbal", function () {

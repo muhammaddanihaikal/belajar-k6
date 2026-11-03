@@ -1,8 +1,7 @@
 import { check, sleep } from "k6";
-import { authOptions } from "../../config/options.js";
+import { authOptions } from "../../config/options/auth.options.js";
 import { login } from "../../services/auth.service.js";
 
-// 100% DRY
 export const options = authOptions;
 
 export default function () {
