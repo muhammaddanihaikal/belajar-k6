@@ -1,0 +1,14 @@
+# Dependencies & Environment
+node_modules/
+.env
+
+# OS / Editor files
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+
+# k6 test outputs & reports
+*.html
+*.summary.json
+test-summary.json
