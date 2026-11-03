@@ -1,24 +1,13 @@
 import { check, sleep } from "k6";
-import { login } from "../../services/auth.service.js";
+import { productOptions } from "../../config/options.js";
+import { authSetup } from "../../helpers/setup.helper.js";
 import { searchProducts, addCart } from "../../services/product.service.js";
 
-// Opsi beban untuk gabungan alur user
-export const options = {
-  vus: 3,
-  duration: "5s",
-  thresholds: {
-    http_req_duration: ["p(95)<1500"],
-    http_req_failed: ["rate==0"],
-  },
-};
+// 100% DRY
+export const options = productOptions;
 
-export function setup() {
-  const res = login("emilys", "emilyspass");
-  return {
-    token: res.json("accessToken"),
-    userId: res.json("id"),
-  };
-}
+// Reusable Setup
+export const setup = authSetup;
 
 export default function (data) {
   // 1. Service Product (Cari)

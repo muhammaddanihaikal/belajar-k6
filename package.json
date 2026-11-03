@@ -2,8 +2,13 @@
   "name": "belajar-k6",
   "version": "1.0.0",
   "type": "module",
-  "description": "Latihan dan implementasi performance testing k6 modular",
+  "description": "Framework Performance Testing k6 Modular & 100% DRY",
   "scripts": {
-    "seed": "node scripts/seed-products.js"
+    "seed": "node scripts/seed-products.js",
+    "test:login": "k6 run tests/auth/login.test.js",
+    "test:search": "k6 run tests/product/search-filter.test.js",
+    "test:update": "k6 run tests/product/update-tumbal.test.js",
+    "test:delete": "k6 run tests/product/delete-tumbal.test.js",
+    "test:checkout": "k6 run tests/journeys/fast-checkout.test.js"
   }
 }

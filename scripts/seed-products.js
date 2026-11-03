@@ -1,13 +1,10 @@
 import fs from "fs";
+import { BASE_URL } from "../config/config.js";
 
-const BASE_URL = "https://dummyjson.com";
-const TOTAL_DATA = 10; // 10 data tumbal untuk contoh
+const TOTAL_DATA = 10;
 
 async function seedProducts() {
-  console.log(`🌱 [SEEDER] Menyiapkan ${TOTAL_DATA} data produk tumbal via API...`);
-
-  // Di project kantor nyata: loop POST /products/add untuk bikin data baru
-  // Di DummyJSON (Mock API): ambil ID produk yang ada agar bisa di-UPDATE / di-DELETE
+  console.log(`🌱 [SEEDER] Menyiapkan ${TOTAL_DATA} data produk tumbal via API: ${BASE_URL}...`);
   const res = await fetch(`${BASE_URL}/products?limit=${TOTAL_DATA}`);
   const json = await res.json();
 
@@ -16,7 +13,6 @@ async function seedProducts() {
     title: p.title,
   }));
 
-  // Simpan ke file JSON
   fs.writeFileSync("data/tumbal-products.json", JSON.stringify(tumbalList, null, 2));
   console.log(`📁 Selesai! ${tumbalList.length} data tumbal tersimpan di: data/tumbal-products.json\n`);
 }

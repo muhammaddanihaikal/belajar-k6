@@ -1,11 +1,10 @@
 import { check, sleep } from "k6";
+import { authOptions } from "../../config/options.js";
 import { login } from "../../services/auth.service.js";
-import { authOptions } from "../../config/auth.options.js";
 
-// 1. Pasang opsi khusus Service Auth
+// 100% DRY
 export const options = authOptions;
 
-// 2. Skenario Uji Service Auth
 export default function () {
   const res = login("emilys", "emilyspass");
 

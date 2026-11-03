@@ -1,6 +1,5 @@
 import http from "k6/http";
-
-const BASE_URL = "https://dummyjson.com";
+import { BASE_URL } from "../config/config.js";
 
 // 1. Search Produk
 export function searchProducts(keyword) {
@@ -30,4 +29,20 @@ export function deleteProduct(id, token) {
     headers: { Authorization: `Bearer ${token}` },
   };
   return http.del(`${BASE_URL}/products/${id}`, null, params);
+}
+
+// 5. Add Cart / Checkout
+export function addCart(userId, productId, token) {
+  const url = `${BASE_URL}/carts/add`;
+  const payload = JSON.stringify({
+    userId: userId,
+    products: [{ id: productId, quantity: 1 }],
+  });
+  const params = {
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+  };
+  return http.post(url, payload, params);
 }
