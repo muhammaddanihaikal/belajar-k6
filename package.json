@@ -1,0 +1,9 @@
+{
+  "name": "belajar-k6",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Latihan dan implementasi performance testing k6 modular",
+  "scripts": {
+    "seed": "node scripts/seed-products.js"
+  }
+}
